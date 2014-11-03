@@ -14,12 +14,13 @@
 from Tkinter import *
 root = Tk()
 
-drawpad = Canvas(root, width=800,height=600, background='white')
+drawpad = Canvas(root, width=800,height=600, background='black')
 player = drawpad.create_oval(390,580,410,600, fill="red")
 
 # Create your "enemies" here, before the class
-
-
+circle = drawpad.create_oval(20, 20, 100, 100, fill='blue')
+hi = drawpad.create_oval(300, 400, 100, 100, fill='hot pink')
+yolo = drawpad.create_rectangle(390,580,350,500, fill='grey')
 class MyApp:
 	def __init__(self, parent):
        	    global drawpad
@@ -46,10 +47,29 @@ class MyApp:
        	    
        	    # No need to edit this - just includes the drawpad into our frame
        	    drawpad.pack(side=BOTTOM)
+            self.animate()
 	
 	def animate(self):
 	    global drawpad
 	    global player
+	    global circle
+	    drawpad.move(circle,10,0)
+            # Wait for 1 millisecond, then recursively call our animate function
+            drawpad.after(1, self.animate)
+            x1, y1, x2, y2 = drawpad.coords(circle)
+            if x1 > 800: 
+                drawpad.move(circle,-800,0)
+            global hi
+            drawpad.move(hi,-10,0)
+            drawpad.after(1, self.animate)
+            x1, y1, x2, y2 = drawpad.coords(circle)
+            if x1 > -800: 
+                drawpad.move(hi,800,0)
+            
+            
+	    
+	
+	
 	    # Remember to include your "enemies" with "global"
 	    	
 		
@@ -71,5 +91,25 @@ class MyApp:
            drawpad.move(player,0,20)
 		
 		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app = MyApp(root)
 root.mainloop()
