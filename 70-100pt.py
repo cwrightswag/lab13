@@ -55,16 +55,20 @@ class MyApp:
 	    global circle
 	    drawpad.move(circle,10,0)
             # Wait for 1 millisecond, then recursively call our animate function
-            drawpad.after(1, self.animate)
             x1, y1, x2, y2 = drawpad.coords(circle)
             if x1 > 800: 
                 drawpad.move(circle,-800,0)
             global hi
             drawpad.move(hi,-10,0)
-            drawpad.after(1, self.animate)
-            x1, y1, x2, y2 = drawpad.coords(circle)
-            if x1 > -800: 
+            x1, y1, x2, y2 = drawpad.coords(hi)
+            if x2 < 0: 
                 drawpad.move(hi,800,0)
+            global yolo
+            drawpad.move(yolo,10,0)
+            x1, y1, x2, y2 = drawpad.coords(yolo)
+            if x1 > 800:
+                drawpad.move(yolo,-800,0)
+            drawpad.after(20, self.animate)
             
             
 	    
